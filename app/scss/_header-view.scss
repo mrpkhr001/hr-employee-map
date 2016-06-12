@@ -1,0 +1,27 @@
+header div.container{
+    border-bottom: 3px solid $gray-dark;
+}
+.brand-logo{
+    height: $brandlog-lg-height;
+    img{
+        height : 100%;
+    }
+}
+
+.profile-wrapper{
+    margin-top: $header-margins;
+    .user-name{
+        line-height: $profile-image-heght;
+        height : $profile-image-heght;
+    }
+    small{
+        line-height: normal;
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    img{
+        height: $profile-image-heght;
+    }
+
+}

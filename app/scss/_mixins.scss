@@ -1,0 +1,8 @@
+
+@mixin custom-text($size : 1rem, $weight : normal, $transform: none) {
+    font-size: $size;
+    font-weight: $weight;
+    text-transform: $transform;
+}
+
+//@mixin filter

@@ -1,0 +1,40 @@
+.tracker-base{
+    h3{
+      background-color:$cyan-green-bg;
+      color : $body-bg;
+      margin :0;
+      padding:  1rem 0px;
+    }
+    .tab-filter-container{
+        background-color :$gray-lighter;
+        padding : 0.9375rem;
+    }
+    .tab-wrapper{
+        margin-right: -120px;
+        padding-right: 120px;
+        width: 100%;
+
+        a{
+            border-bottom: 2px solid darken($gray-lighter, 10%);
+            color: $gray-light;
+            display: inline-block;
+            margin: 0px 5px;
+            min-width:40px;
+            text-align: center;
+            width: 20%;
+        }
+
+        a.active, a:focus, a:hover{
+            color: darken($gray-light, 15%);
+            border-color: $cyan-green-bg;
+        }
+    }
+
+    .applied-filters{
+        padding : 0.9375rem;
+        .btn-filter{
+            margin-right : 5px;
+        }
+    }
+
+}

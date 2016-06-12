@@ -1,0 +1,28 @@
+<div class="container tracker-base">
+  <div class="row">
+    <h3 class="header text-xs-center">TRACK YOUR EMPLOYEES</h3>
+  </div>
+  <div class="row tab-filter-container">
+    <div class="tab-wrapper pull-left text-md-center">
+      <a data-ng-repeat="tab in vm.tabList" data-ui-sref="{{tab.state}}" class="label-sm-bold tab-{{tab.name}}"
+         data-ng-class="{'active' : tab.active}" data-ng-bind="tab.name"></a>
+    </div>
+
+    <button class="label-sm-bold btn btn-filter pull-right">
+      <span class="title">Add filter</span><span class="fa fa-filter"></span>
+    </button>
+    <div class="clearfix"></div>
+  </div>
+  <div class="row applied-filters">
+    <span class="label-sm-bold btn  btn-filter btn-divider pull-left">
+      <span class="title">Add filter</span><a class="" href="#">x</a>
+    </span>
+    <span class="label-sm-bold btn  btn-filter btn-divider pull-left">
+      <span class="title">Add filter</span><a class="" href="#">x</a>
+    </span>
+    <span class="label-sm-bold btn  btn-filter btn-divider pull-left">
+      <span class="title">Add filter</span><a class="fa fa-close" href="#"></a>
+    </span>
+  </div>
+  <div data-ui-view="tab-content"></div>
+</div>

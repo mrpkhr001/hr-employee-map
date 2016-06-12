@@ -1,0 +1,12 @@
+
+h6{
+    font-size: 0.75rem;
+}
+
+.label-sm{
+   @include custom-text(60%, normal, none);
+}
+
+.label-sm-bold{
+    @include custom-text(60%, bold, uppercase);
+}

@@ -1,0 +1,25 @@
+.btn-filter{
+    @include button-variant($body-bg, $burgundy-bg, transparent);
+    border-width:1px;
+    padding:0;
+    @include border-radius(0.125rem);
+/*    vertical-align: middle;
+    display: inline-block;*/
+
+
+    > *{
+        display: inline-block;
+        padding: 5px;
+        color:inherit;
+        &:first-child{
+            padding-right: 2px;
+        }
+    }
+
+    &.btn-divider >* {
+        padding: 7px;
+        &.title{
+            border-right :  1px solid $gray-light;
+        }
+    }
+}

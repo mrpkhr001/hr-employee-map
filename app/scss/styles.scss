@@ -1,6 +1,17 @@
 
 // Switch to bootstrap-at-accessible for accessible theme
 
+
+
 @import 'base';
 
-@import 'home-vew';
+@import 'variables';
+@import 'mixins';
+
+@import 'type';
+@import 'buttons';
+
+@import 'header-view';
+@import 'tracker-base';
+@import 'tracker-map';
+
