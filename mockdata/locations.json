@@ -1,0 +1,34 @@
+{
+  "london": {
+    "latitude": 51.507351,
+    "longitude": -0.1277
+  },
+  "frankfurt": {
+    "latitude": 50.110922,
+    "longitude": 8.682127
+  },
+  "paris": {
+    "latitude": 48.856614,
+    "longitude": 2.352222
+  },
+  "zurich": {
+    "latitude": 47.376887,
+    "longitude": 8.541694
+  },
+  "prague": {
+    "latitude": 50.075538,
+    "longitude": 14.4378
+  },
+  "budapest": {
+    "latitude": 47.497912,
+    "longitude": 19.040235
+  },
+  "milan": {
+    "latitude": 45.458626,
+    "longitude": 9.181873
+  },
+  "bangalore": {
+    "latitude": 12.971599,
+    "longitude": 77.594563
+  }
+}

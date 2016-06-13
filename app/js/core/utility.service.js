@@ -7,6 +7,16 @@
 
     utilities.$inject = ['$rootScope', '$window', '$q', '$filter', '$sce', '$timeout'];
 
+    /**
+     * Generl utilities service
+     * @param $rootScope
+     * @param $window
+     * @param $q
+     * @param $filter
+     * @param $sce
+     * @param $timeout
+     * @returns {{_: (*|xt)}}
+     */
     function utilities($rootScope, $window, $q, $filter,  $sce, $timeout) {
 
         var HOURS_IN_MILLISECOND = 1 * 60 * 60 * 1000;
@@ -62,121 +72,11 @@
             return deferred.promise;
         };
 
-        util.scrollTop = function(){
-            $timeout(function(){$window.scrollTo(0,0);});
-        };
 
         util.sanitizeContent = function (input) {
             return $sce.trustAsHtml(input);
         };
 
-
-        /**
-         * Returns date instance in a specific timezone if tzOffSet is provided
-         * Otherwise a date instance in local browser timezone.
-         * @param tzOffSet timezone offset value in form (+1200 to -1200)
-         * @param onlyDate if true time part is truncated to midnight otherwise retained
-         */
-        util.getCurrentDateInstance = function (tzOffSet, onlyDate, givenDate) {
-            //var dateInstance = new Date(2015, 4, 09, 7, 0, 0);
-            var dateInstance = givenDate || new Date();
-            if (tzOffSet) {
-                var hours = parseInt(tzOffSet.substr(0, 3));
-                var offSetDirection = tzOffSet.charAt(0) === '+' ? 1 : -1;
-
-                var hoursInMilliSeconds = Math.abs(hours) * HOURS_IN_MILLISECOND;
-                var minutesInMilliSeconds = parseInt(tzOffSet.substr(tzOffSet.length - 2)) * 60000;
-
-                dateInstance = new Date(dateInstance.getTime() + (dateInstance.getTimezoneOffset() * (60 * 1000)) + (offSetDirection * (hoursInMilliSeconds + minutesInMilliSeconds)));
-            }
-            if (onlyDate) {
-                dateInstance = new Date(dateInstance.getFullYear(), dateInstance.getMonth(), dateInstance.getDate());
-            }
-            return dateInstance;
-        };
-
-        /**
-         * Following method takes date string and converts it to a java script
-         * date object. Given date string pattern should be yyyy-MM-dd HH:mm:ss
-         * or yyyy-MM-dd HH:mm:ss:sssZ
-         *
-         *
-         */
-        util.getDateObject = function (inputDateString, stripTime) {
-            var dateString = inputDateString;
-            if (!dateString || dateString === null || dateString === '') {
-                return null;
-            } else if (!isNaN(dateString)) {
-                return new Date(dateString);
-            } else if (dateString.length === 10) {
-                dateString += ' 00:00:00';
-            }
-
-            //var pattern = /\w/g;
-
-            dateString = dateString.replace(/[TZ]/g, ' ').replace(/[-\s]/g, ':');
-            var dateArray = dateString.split(':');
-            var dateObject = null;
-            var monthToNumericMapping = {
-                'jan': 0,
-                'feb': 1,
-                'mar': 2,
-                'apr': 3,
-                'may': 4,
-                'jun': 5,
-                'jul': 6,
-                'aug': 7,
-                'sep': 8,
-                'oct': 9,
-                'nov': 10,
-                'dec': 11
-            };
-
-
-            var month = monthToNumericMapping[dateArray[1].toLowerCase()] || (parseInt(dateArray[1]) - 1);
-            var localDate;
-            if (stripTime) {
-                localDate = new Date(dateArray[0], month, dateArray[2]);
-            } else {
-                localDate = new Date(dateArray[0], month, dateArray[2], dateArray[3], dateArray[4], dateArray[5]);
-            }
-
-            dateObject = localDate;
-
-            if (dateObject && dateObject.toString() === 'Invalid Date') {
-                var message = 'Provided date string "' + dateString + '" is not in either of format "yyyy-MM-dd HH:mm:ssZ" or "yyyy-MM-ddTHH:mm:ss:sssZ"';
-                console.warn(message);
-                throw new Error(message);
-            }
-
-            return dateObject;
-        };
-
-        /**
-         * Method adds/subtracts given offset from the given date or current date
-         * @param prop Specifies which part to adjusted, Possible values : ["year", "month", "date", "hour", "minute", "second", "milli"]
-         * @param offset Integer value that to be added or subtracted from the date. Negative value indicates to subtract
-         * @param date The given date to be adjusted, if not supplied then current date instance is adjusted.
-         * @returns Date Returns JS date object after adjustment
-         */
-        util.add = function (prop, offset, inputDate) {
-            inputDate = inputDate || new Date();
-            var date = new Date(inputDate.getTime());
-
-            var translate = {
-                'year': 'FullYear',
-                'month': 'Month',
-                'date': 'Date',
-                'hour': 'Hours',
-                'minute': 'Minutes',
-                'second': 'Seconds',
-                'milli': 'Milliseconds'
-            };
-            if (translate[prop]) {
-                date['set' + translate[prop]](date['get' + translate[prop]]() + offset);
-            }
-            return date;
-        };
 
         /**
          * Formats date to given pattern.
@@ -195,34 +95,6 @@
 
         util.filter = function (array, expression, option){
             return $filter('filter')(array, expression, option);
-        };
-
-        util.trimText = function(inputString){
-            return typeof inputString === 'undefined' ? inputString : inputString.trim();
-        };
-
-        /**
-         * Checks if given toDate is later than the fromDate
-         * @param fromDate could be JS Date instance or date string in yyyy-MM-dd HH:mm:ss or ISO date string
-         * @param toDate could be JS Date instance or date string in yyyy-MM-dd HH:mm:ss or ISO date string
-         * @return returns true if toDate is later than fromDate otherwise false;
-         */
-        util.compareDates = function (fromDate, toDate) {
-            fromDate = (angular.isDate(fromDate) ? fromDate : this.getDateObject(fromDate)).getTime();
-            toDate = (angular.isDate(toDate) ? toDate : this.getDateObject(toDate)).getTime();
-            return toDate > fromDate;
-        };
-
-        util.onLoadImage = function (element) {
-            angular.element(element).closest('.visible-non').removeClass('visible-non');
-        };
-
-        /**
-         * Function is called when a particular image could not be loaded, This sets a default image
-         */
-        util.onErrorImageLoad = function (element) {
-            element.src = '';
-            return false;
         };
 
         return util;

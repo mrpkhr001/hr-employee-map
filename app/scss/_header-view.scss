@@ -11,17 +11,16 @@ header div.container{
 .profile-wrapper{
     margin-top: $header-margins;
     .user-name{
-        line-height: $profile-image-heght;
-        height : $profile-image-heght;
+        line-height: $profile-image-height;
+        height : $profile-image-height;
     }
     small{
         line-height: normal;
         vertical-align: middle;
         display: inline-block;
     }
+}
 
-    img{
-        height: $profile-image-heght;
-    }
-
+.profile-image{
+    @include profile-image();
 }

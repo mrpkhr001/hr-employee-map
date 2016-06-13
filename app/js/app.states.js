@@ -11,7 +11,7 @@
         
         $urlRouterProvider.when('', '/');
         
-        $urlRouterProvider.when('/', '/mg/tracker');
+        $urlRouterProvider.when('/', '/mg/tracker/map');
         
         $stateProvider.state('mg', {
             abstract: true,
@@ -30,25 +30,32 @@
                 console.log('state : app : Enter.....');
             }
         }).state('mg.tracker', {
+            resolve:{
+
+                employeeList : ['EmployeeTrackerService', function(service){
+                    return service.fetchEmployees();
+                }]
+
+            },
             url: '/tracker',
             views: {
                 'content@': {
                     templateUrl: 'views/tracker/tracker-base-view.html',
                     controller: 'TrackerBaseViewController as vm',
                 }
-            },
-            onEnter: function () {
-                console.log('state : app->home : Enter.....');
             }
         }).state('mg.tracker.map', {
             url: '/map',
+            resolve:{
+                locationMap : ['LocationModel', 'employeeList', function(service){
+                    return service.query();
+                }]
+            },
             views: {
                 'tab-content@mg.tracker': {
-                    templateUrl: 'views/tracker/tracker-map.html'
+                    templateUrl: 'views/tracker/tracker-map.html',
+                    controller: 'MapViewController as vm'
                 }
-            },
-            onEnter: function () {
-                console.log('state : app->home : Enter.....');
             }
         }).state('mg.tracker.list', {
             url: '/list',
@@ -56,9 +63,6 @@
                 'tab-content@mg.tracker': {
                     templateUrl: 'views/tracker/tracker-list.html'
                 }
-            },
-            onEnter: function () {
-                console.log('state : app->home : Enter.....');
             }
         }).state('mg.tracker.search', {
             url: '/search',
@@ -66,9 +70,6 @@
                 'tab-content@mg.tracker': {
                     templateUrl: 'views/tracker/tracker-search.html'
                 }
-            },
-            onEnter: function () {
-                console.log('state : app->home : Enter.....');
             }
         });
 

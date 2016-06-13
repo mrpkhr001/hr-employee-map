@@ -1,7 +1,8 @@
 (function () {
     'use strict';
     angular.module('mgApp')
-        .config(configureTranslate);
+        .config(configureTranslate)
+        .config(initializeGoogleApi);
 
     configureTranslate.$inject = ['$translateProvider'];
 
@@ -14,6 +15,17 @@
         $translateProvider.fallbackLanguage('en');
         $translateProvider.useMissingTranslationHandlerLog();
         $translateProvider.useSanitizeValueStrategy('escaped');
+    }
+
+    initializeGoogleApi.$inject = ['uiGmapGoogleMapApiProvider'];
+
+    function initializeGoogleApi(uiGmapGoogleMapApiProvider) {
+
+        uiGmapGoogleMapApiProvider.configure({
+            // key:'',
+            v: '3.20',
+            libraries: 'weather,geometry,visualization'
+        });
     }
 
 })();

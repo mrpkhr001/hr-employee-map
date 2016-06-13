@@ -5,7 +5,9 @@
 
     angular.module('mgAppCore', []);
 
-    angular.module('mgAppHome', ['mgAppCore']);
+    angular.module('mgAppModel', ['ngResource']);
+
+    angular.module('mgAppHome', ['mgAppCore', 'mgAppModel']);
 
 
     //Main app
@@ -15,6 +17,7 @@
         'pascalprecht.translate',
         'ui.bootstrap',
         'ngSanitize',
+        'uiGmapgoogle-maps',
         'mgAppHome'
     ]);
 

@@ -117,8 +117,9 @@ function browserSyncInit(baseDir, browser) {
     if (baseDir === paths.app || (_.isArray(baseDir) && baseDir.indexOf(paths.app) !== -1)) {
         gutil.log('we are inside condition');
         routes = {
-            '/bower_components': 'bower_components',
+            '/bower_components': paths.BC,
             '/fonts': paths.BC + '/font-awesome/fonts',
+            '/mockdata': 'mockdata',
         };
     }
 

@@ -5,4 +5,8 @@
     text-transform: $transform;
 }
 
+@mixin profile-image($height : $profile-image-height){
+    height: $height;
+}
+
 //@mixin filter

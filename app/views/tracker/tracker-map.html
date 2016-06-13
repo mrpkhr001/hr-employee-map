@@ -1,13 +1,17 @@
 <div class="tracker-map">
   <div class="map-container">
-    <p>google map will come here</p>
+    <ui-gmap-google-map center='vm.map.center' zoom='vm.map.zoom' bounds="vm.map.bounds">
+      <ui-gmap-markers models="vm.markerList" coords="'mapLocation'" options="'options'" data-ng-if="vm.markerList.length > 0">
+      </ui-gmap-markers>
+
+    </ui-gmap-google-map>
   </div>
   <div class="emp-list-container">
-      <div class="list-header text-xs-center">Employees in <br>LONDON</div>
+      <div class="list-header text-xs-center">Employees in <br><small class="text-uppercase">{{vm.selectedCity.name}}</small></div>
        <div class="list-content">
-         <h3 data-ng-repeat="a in vm.list">
-           <span>Employee {{$index}}</span>
-         </h3>
+        <ul class="list-group">
+          <employee data-ng-repeat="emp in vm.employeeList"></employee>
+        </ul>
        </div>
       <div class="list-footer text-xs-center"><a href="#" class="label-sm">View all</a></div>
   </div>

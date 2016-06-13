@@ -1,33 +1,70 @@
-$height-col : 400px;
+$height-col: 400px;
 $employee-list-width: 250px;
 $emp-list-bottom-padding: 40px;
-.tracker-map{
-    border : 1px solid $gray-lighter;
-    margin-bottom : 30px;
 
-    .map-container{
+.ui-gmap-google-map, .angular-google-map {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.angular-google-map-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.middle {
+    display: table;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tracker-map {
+    border: 1px solid $gray-lighter;
+    margin-bottom: 30px;
+
+    .map-container {
         width: 100%;
         padding-right: $employee-list-width;
-        margin-right : -$employee-list-width;
+        margin-right: -$employee-list-width;
         float: left;
+        height: 400px;
     }
 
-    .emp-list-container{
+    .emp-list-container {
         position: relative;
-        float : right;
+        float: right;
         width: $employee-list-width;
         margin-right: -1px; /* Thank you IE */
         border-left: 1px solid black;
         height: $height-col;
         padding-bottom: $emp-list-bottom-padding;
-     }
-    .list-content{
+    }
+    .list-content {
         height: calc(100% - #{$emp-list-bottom-padding});
         overflow-x: hidden;
         overflow-y: auto;
 
     }
-    .list-footer{
+    .list-footer {
+        border-top: 1px solid $gray-lighter;
         padding: 3.8px;
+        a{
+            color: $cyan-green-bg;
+        }
+    }
+
+    .employee {
+        padding: 0.625rem;
+        @include border-radius(0);
+        span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        h6 {
+            margin-bottom: 0.1875rem;
+        }
     }
 }

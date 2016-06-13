@@ -15,7 +15,15 @@
     function headerFooterController() {
         var vm = this;
 
-        vm.appHomeTitle = 'Application home title';
+        vm.logout = logout;
+
+
+        /**
+         * Implements logout functionality
+         */
+        function logout(){
+            
+        }
 
     }
 })();
