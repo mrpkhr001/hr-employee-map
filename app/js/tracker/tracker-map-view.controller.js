@@ -10,9 +10,9 @@
      */
     angular.module('mgAppHome')
         .controller('MapViewController', mapViewController);
-    mapViewController.$inject = ['$scope', 'Utilities', 'employeeList', 'locationMap'];
+    mapViewController.$inject = ['$scope', '$window','Utilities', 'employeeList', 'locationMap', 'uiGmapGoogleMapApi', 'uiGmapIsReady'];
 
-    function mapViewController($scope, util, employeeList, locationMap) {
+    function mapViewController($scope, $window, util, employeeList, locationMap, uiGmapGoogleMapApi, uiGmapIsReady) {
         var vm = this;
         vm.locationList = [];
 
@@ -28,6 +28,20 @@
             
             vm.selectedCity = vm.orderedCityList[0]; // Assignin city with most number of employees
             vm.map = { center: vm.selectedCity.mapLocation, zoom: 6 , bounds : {}};
+
+            uiGmapGoogleMapApi.then(function(maps) {
+                    maps.event.trigger(vm.map, 'resize');
+
+            });
+
+            uiGmapIsReady.promise(1).then(function(instances) {
+                console.log(instances);
+                instances.forEach(function(inst) {
+                    var map = inst.map;
+                    var uuid = map.uiGmap_id;
+                    var mapInstanceNumber = inst.instance; // Starts at 1.
+                });
+            });
 
         }
 
